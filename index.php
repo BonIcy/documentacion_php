@@ -1,161 +1,86 @@
 <!--        Documentacion php       -->
 <?php
-/* <!-- Tipos de datos --> */
-/* 
-Enteros (int): se utilizan para almacenar números enteros sin decimales.
+/* <!-- Arreglos, Arreglos asociativos y funciones para arreglos --> */
 
-Punto flotante (float): se utilizan para almacenar números con decimales.
+/* Un array es un mapa ordenado donde los datos tendrán una clave (key) pero muchos valores (values). Por ejemplo, podríamos guardar los días de la semana bajo el mismo nombre de variable. */
+$semana = [
+    'Lunes',
+    'Martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado',
+    'Domingo'
+];
+/* Los valores están dentro de corchetes ([]) separados por comas. De esta formar se asigna automáticamente un marcador que empieza por cero. Si quiero leer por separado cada elemento debo asignar el marcador envuelto en corchetes. */
+echo $semana[0]; // Lunes
+echo $semana[3]; // Jueves
+echo $semana[6]; // Domingo
 
-Cadenas de texto (string): se utilizan para almacenar texto y caracteres.
+/* Si quiero ver todo el contenido puedo usar la función nativa de PHP var_dump. Nos dirá la longitud del array, la posición de cada elemento, su tipo, longitud de cada valor y el propio valor que almacena. */
+var_dump($semana);
 
-Booleanos (bool): se utilizan para almacenar valores de verdad o falsedad, que se representan por true o false.
+/*
+array(7) {
+  [0] =>
+  string(5) "Lunes"
+  [1] =>
+  string(6) "Martes"
+  [2] =>
+  string(10) "Miércoles"
+  [3] =>
+  string(6) "Jueves"
+  [4] =>
+  string(7) "Viernes"
+  [5] =>
+  string(7) "Sábado"
+  [6] =>
+  string(7) "Domingo"
+}
+*/
 
-Arreglos (array): se utilizan para almacenar una colección de datos, que pueden ser de diferentes tipos.
+//Para declarar un array vacío solamente debemos crear una variable donde asignemos unos corchetes. (También se puede crear con su función: $planetas = array();.)
+$planetas = [];
 
-Objetos (object): se utilizan para almacenar instancias de clases, que son definiciones de
-objetos.
+/* Añadir elementos.*/
+$planetas[] = 'Marte';
+$planetas[] = 'Tierra';
+$planetas[] = 'Venus';
 
-Como se puede observar en la imagen anterior que la línea número 10 se está imprimiendo el tipo de dato y el contenido de la variable haciendo uso de lafunción especial var_dump.
-
-Recursos (resource): se utilizan para almacenar referencias a recursos externos, comoconexiones a bases de datos o archivos abiertos.
-
-Nulos (null): se utilizan para representar una variable sin valor o sin definir */
-
-//Boleanos
-$si = true;
-$no = false;
-
-
-//Enteros
-$entero = 200;
-
-//flotante
-$float = 66.6;
-
-//strings
-$stringg = "Esto es una string, creo";
-
-//arrays
-$array = []; 
-
-/* <!-- Numeros y operadores --> */
-    /* Operadores aritméticos:
-Nos permiten realizar operaciones numéricas con nuestras variables. Son los más fáciles de asimilar, porque generalmente todos conocemos esas operaciones.  */
-
-// + Suma
-// - Resta
-// * Multiplicación
-// / División
-// % Módulo (resto de la división)
-// ** Exponenciación (2 ** 3, elevar 2 la a tercera potencia)
+/* Y si queremos utilizar un método más orientado a la programación funcional, podemos usar array_merge para crear un nuevo array. */
 
 
-     /* Operadores de asignación
 
-Los operadores de asignación son los más habituales y nos permiten traspasar valores en variables. Asignar es el proceso por el cual colocamos un valor en una variable.
 
-    = Asignación      */
-$valor = 'Esto es lo que se va a asignar a la variable';
-$a = 23;
-$b = 3;
-$c = $a - $b;
+// Array de partida
+$planetas = ['Marte', 'Tierra', 'Venus'];
 
-/* 
-    += Suma y asignación
-    -= Resta y asignación
-    *= Multiplicación y asignación
-    /= División y asignación
-    %= Módulo y asignación
-    .= Concatenación y asignación
+// Añadimos 'Mercurio'
+$nuevosPlanetas = array_merge($planetas, ['Mercurio']);
 
-Comparación
-    == Comprueba si son iguales
-    != Comprueba si son distintos
-    === Comprueba si son iguales y de exactamente el mismo tipo
-    !== Comprueba si son distintos o de distinto tipo
-    <> Diferente (igual que !=)
-    < Menor qué, comprueba si un valor es menor que otro
-    > Mayór qué
-    <= Menor o igual
-    >= Mayor o igual
-    <=> Comparador de orden. (PHP 7)
-    ?? uno o el otro (PHP 7)
+// Vemos el resultado
+var_dump($nuevosPlanetas);
 
-Logicos
-    and             Operación lógica "y", será verdadero si ambos son verdaderos.
-    or              Operación lógica "o", será verdadero si uno de ellos es verdadero
-    xor             Operación lógica "xor", será verdadero si uno de ellos es verdadero, pero no ambos.
-    !               Operación de negación, si era verdadero pasa a falso y viceversa.
-    &&              Operación lógica "y"
-    ||              Operación lógica "o"               */
+/*
+array(4) {
+  [0]=>
+  string(5) "Marte"
+  [1]=>
+  string(6) "Tierra"
+  [2]=>
+  string(5) "Venus"
+  [3]=>
+  string(8) "Mercurio"
+}
+*/
 
-$a = 3;
-$b = ++$a;
-echo "\$a vale $a y \$b vale $b"; //$a vale 4 y $b vale 4
+//Una utilidad muy práctica para saber la longitud de un array es usar la funcion count().
+echo count($planetas); // devuelve 3
 
-$a = 3;
-$b = $a++;
-echo "\$a vale $a y \$b vale $b"; //$a vale 4 y $b vale 3
+//Modificar:ara cambiar un valor hay que indicar la posición y el nuevo valor a introducir. 
+$planetas[2] = 'Saturno';
 
-$n1 = 20;
-$n2 = 30;
-$n3 = 30;
-$n4 = "30";
+//Borrar: Eliminar un elemento es un poco más marciano, debes usar una función nativa llamada unset. Personalmente creo que ha sido creada por un ser malvado. Supongamos que quiero destruir la Tierra antes de que lo haga el hombre. Es el 2º elemento, cuya posición es la 1.
+unset($planetas[1]);
 
-var_dump($n1 > $n2);
-echo false;
-var_dump($n1 < $n2);
-echo true;
-var_dump($n1 >= $n2);
-echo false ;
-var_dump($n1 <= $n2);
-echo true;
-var_dump($n2 == $n3);
-echo true;
-var_dump($n2 == $n4);
-echo true;
-var_dump($n2 === $n4);
-echo false;
-
-// -1 Si izquierda es menor
-// 0 si es igual
-// 1 Si izquierda es mayor
-
-var_dump($n1 <=> $n2);
-echo -1;
-
-var_dump($n2 <=> $n3);
-echo 0;
-
-var_dump($n2 <=> $n1);
-echo 1;
 ?>
-<?php include
-$nombreCliente = "Nombre del cliente";
-
-///conocer extension de un string
-echo strlen($nombreCliente);
-var_dump($nombreCliente);
-
-//eliminar espacios en blanco
-$sinEspacio = trim($nombreCliente);
-echo strlen($sinEspacio);
-
-//en mayusculas
-echo strtoupper($nombreCliente);
-//en minusculas
-echo strtolower($nombreCliente);
-
-$mail1 = "correo@gmail.com";
-$mail2 = "Correo@gmail.com";
-
-var_dump(strtolower($mail) == strtolower($mail2));
-echo str_replace('Yisus', 'Y', $nombreCliente);
-
-//verificar si un string existe o no 
-echo strpos($nombreCliente, 'Julian'); //falso, no existe julian en esa string
-$tipoCliente = "Premium - VIP";
-
-echo "El cliente" . $nombreCliente . "es" . $tipoCliente; //concatenacion con puntos
-echo "El Cliente {$nombreCliente} es {$tipoCliente}"; //concatenacion con llaves
-
